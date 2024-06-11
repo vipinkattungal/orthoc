@@ -13,7 +13,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="images/favicon.png" type="">
 
-  <title> Orthoc </title>
+  <title class="titleclass"> Orthoc </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -42,7 +42,7 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
-            <span>
+            <span class="logo">
               Orthoc
             </span>
           </a>
@@ -122,7 +122,9 @@
         <div class="col-md-6">
           <div class="map_container">
             <div class="map">
-              <div id="googleMap"></div>
+              <div id="google\Map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8039.614508392576!2d77.5030254218375!3d13.059986402904421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae23913eda0e47%3A0x7d64a5f01fdcccfe!2sSumukha%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1718129668045!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
             </div>
           </div>
         </div>
@@ -143,20 +145,20 @@
             <div class="contact_link_box">
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
+                <span class="address">
                   Location
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
+                <span class="phone">
                   Call +01 1234567890
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  demo@gmail.com
+                  SumukhaDentalClinic@gmail.com
                 </span>
               </a>
             </div>
@@ -181,7 +183,7 @@
             <h4>
               About
             </h4>
-            <p>
+            <p class="abtcontent">
               Beatae provident nobis mollitia magnam voluptatum, unde dicta facilis minima veniam corporis laudantium alias tenetur eveniet illum reprehenderit fugit a delectus officiis blanditiis ea.
             </p>
           </div>
@@ -225,13 +227,15 @@
       <div class="footer-info">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates<br><br></a>
             &copy; <span id="displayYear"></span> Distributed By
-            <a href="https://themewagon.com/">ThemeWagon</a>
+            <a href="https://itismind.com/">iTisMind</a>
         </p>
       </div>
     </div>
   </footer>
+  <a href="https://wa.me/+919632955865?text=Hello%20I%20would%20like%20to%20know%20more%20about%20your%20services" class="whatsapp-button" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
   <!-- footer section -->
 
   <!-- jQery -->
@@ -250,7 +254,55 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
   <!-- End Google Map -->
-
+  <script>
+    fetch('https://csmdoc.vercel.app/api/doctors/profile/website')
+       .then(response => {
+         if (!response.ok) {
+           throw new Error('Failed to fetch data');
+         }
+         return response.json();
+       })
+       .then(data => {
+   
+         const footerContainer = document.querySelector('.address');
+         footerContainer.innerHTML = `
+           
+       <span>
+       ${data.contact.address}
+         </span>
+         `
+         ;
+       const phone = document.querySelector('.phone');
+       phone.innerHTML = `
+           
+       <span>
+       ${data.contact.phoneNumber}
+         </span>
+         `
+         ;
+         const abtcontent = document.querySelector('.abtcontent');
+       abtcontent.innerHTML = `
+           
+       <span>
+       ${data.aboutUs}
+         </span>
+         `
+         ;
+         const titleclass = document.querySelector('.titleclass');
+        titleclass.innerHTML = `
+          
+      ${data.titleHeading}
+        `
+        ;
+         const logo = document.querySelector('.navbar-brand .logo');
+        logo.innerHTML = ` <a class="navbar-brand" href="index.html">
+            <span class="logo">
+${data.titleHeading}
+        </span>
+          </a>
+`;
+       });
+ </script>
 </body>
 
 </html>

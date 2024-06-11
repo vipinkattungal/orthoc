@@ -13,7 +13,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="images/favicon.png" type="">
 
-  <title> Orthoc </title>
+  <title class="titleclass"> Orthoc </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -47,8 +47,8 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
-            <span>
-              Orthoc
+            <span class="logo">
+              Dental
             </span>
           </a>
 
@@ -96,7 +96,7 @@
                     <h1>
                       We Provide Best Healthcare
                     </h1>
-                    <p>
+                    <p class="main-content-text">
                       Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
                     </p>
                     <div class="btn-box">
@@ -117,9 +117,8 @@
                     <h1>
                       We Provide Best Healthcare
                     </h1>
-                    <p>
-                      Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
-                    </p>
+                    <p class="main-content-text">
+                      At our dental practice, we pride ourselves on delivering expert care across a wide range of dental services. Specializing in dental cleaning and X-rays, we ensure your oral health is meticulously monitored and maintained. Our expertise extends to complex procedures such as root canals and crown and bridge fixing, restoring both functionality and aesthetics to your smile. Additionally, we offer advanced orthodontic treatments                    </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
                         Read More
@@ -138,9 +137,8 @@
                     <h1>
                       We Provide Best Healthcare
                     </h1>
-                    <p>
-                      Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
-                    </p>
+                    <p class="main-content-text">
+                      At our dental practice, we pride ourselves on delivering expert care across a wide range of dental services. Specializing in dental cleaning and X-rays, we ensure your oral health is meticulously monitored and maintained. Our expertise extends to complex procedures such as root canals and crown and bridge fixing, restoring both functionality and aesthetics to your smile. Additionally, we offer advanced orthodontic treatments                    </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
                         Read More
@@ -436,7 +434,9 @@
         <div class="col-md-6">
           <div class="map_container">
             <div class="map">
-              <div id="googleMap"></div>
+              <div id="googlecMap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8039.614508392576!2d77.5030254218375!3d13.059986402904421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae23913eda0e47%3A0x7d64a5f01fdcccfe!2sSumukha%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1718129668045!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
             </div>
           </div>
         </div>
@@ -551,20 +551,20 @@
             <div class="contact_link_box">
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
+                <span class="address">
                   Location
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
+                <span class="phone">
                   Call +01 1234567890
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  demo@gmail.com
+                  SumukhaDentalClinic@gmail.com
                 </span>
               </a>
             </div>
@@ -635,12 +635,17 @@
           &copy; <span id="displayYear"></span> All Rights Reserved By
           <a href="https://html.design/">Free Html Templates<br><br></a>
             &copy; <span id="displayYear"></span> Distributed By
-            <a href="https://themewagon.com/">ThemeWagon</a>
+            <a href="https://themewagon.com/">iTisMind</a>
         </p>
        
       </div>  
     </div>
   </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/+919632955865?text=Hello%20I%20would%20like%20to%20know%20more%20about%20your%20services" class="whatsapp-button" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+  </a>
   <!-- footer section -->
 
   <!-- jQery -->
@@ -659,6 +664,167 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
   <!-- End Google Map -->
+  <script>
+
+    // Fetch data from API endpoint
+    fetch('https://csmdoc.vercel.app/api/doctors/profile/website')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data,"abt");
+        // Inject department data
+        const departmentContainer = document.querySelector('.department_section .container');
+        departmentContainer.innerHTML = `
+          <div class="heading_container heading_center">
+            <h2>Our Departments</h2>
+            <p>Asperiores sunt consectetur impedit nulla molestiae delectus repellat laborum dolores doloremque accusantium</p>
+          </div>
+          <div class="row">
+            ${data.departments.map(department => `
+              <div class="col-md-3">
+                <div class="box">
+                  <div class="img-box">
+                    <img src="images/s1.png" alt="">
+                  </div>
+                  <div class="detail-box">
+                    <h5>${department.heading}</h5>
+                    <p>${department.description}</p>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+
+        const mainTextContent = document.querySelector('.main-content-text');
+        mainTextContent.innerHTML = ` 
+        <p>
+          ${data.aboutUs}
+        </p>`;
+        // Inject about data
+        const imageURL = `data:image/jpeg;base64,uploads/fd82386920fcf4d334b7a46008f35a19`;
+
+        const aboutContainer = document.querySelector('.about_section .container');
+        aboutContainer.innerHTML = `
+          <div class="row">
+            <div class="col-md-6 ">
+              <div class="img-box">
+                <img src="images/about-img.jpg  " alt="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-box">
+                <div class="heading_container">
+                  <h2>About <span>Us</span></h2>
+                </div>
+                <p>${data.titleDescription}</p>
+                <a href="#">Read More</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+          const logo = document.querySelector('.navbar-brand .logo');
+        logo.innerHTML = ` <a class="navbar-brand" href="index.html">
+            <span class="logo">
+${data.titleHeading}
+        </span>
+          </a>
+`;
+        // Inject doctor data
+        const doctorContainer = document.querySelector('.doctor_section .container');
+        doctorContainer.innerHTML = `
+          <div class="heading_container heading_center">
+            <h2>Our Doctors</h2>
+            <p>${data.doctors_description}</p>
+          </div>
+          <div class="row">
+            ${data.doctors.map(doctor => `
+              <div class="col-sm-6 col-lg-4 mx-auto">
+                <div class="box">
+                  <div class="img-box">
+                    <img src="" alt="">
+                  </div>
+                  <div class="detail-box">
+                    <div class="social_box">
+                      <!-- Social media icons -->
+                    </div>
+                    <h5>${doctor.name}</h5>
+                    <h6 class="">${doctor.specialization}</h6>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        const titleclass = document.querySelector('.titleclass');
+        titleclass.innerHTML = `
+          
+      ${data.titleHeading}
+        `
+        ;
+        // Inject contact data
+        const contactContainer = document.querySelector('.map_container');
+      
+
+        // Inject client data
+        const clientContainer = document.querySelector('.client_section .container');
+        clientContainer.innerHTML = `
+          <div class="heading_container heading_center">
+            <h2>Testimonial</h2>
+          </div>
+          <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              ${data.testimonials.map((testimonial, index) => `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                  <div class="row">
+                    <div class="col-md-11 col-lg-10 mx-auto">
+                      <div class="box">
+                        <div class="img-box">
+                          <img src="images/client.jpg" alt="">
+                        </div>
+                        <div class="detail-box">
+                          <div class="name">
+                            <h6>Client</h6>
+                          </div>
+                          <p>${testimonial.review}</p>
+                          <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="carousel_btn-container">
+              <!-- Carousel control buttons -->
+            </div>
+          </div>
+        `;
+
+        // Inject footer data
+        const footerContainer = document.querySelector('.address');
+        footerContainer.innerHTML = `
+          
+      <span>
+      ${data.contact.address}
+        </span>
+        `
+        ;
+      const phone = document.querySelector('.phone');
+      phone.innerHTML = `
+          
+      <span>
+      ${data.contact.phoneNumber}
+        </span>
+        `
+        ;
+      });
+    </script> 
 
 </body>
 
