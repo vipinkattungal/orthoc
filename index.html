@@ -398,7 +398,7 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Get In Touch
+          for appointment
         </h2>
       </div>
       <div class="row">
@@ -589,7 +589,7 @@
             <h4>
               About
             </h4>
-            <p>
+            <p class="abtcontent">
               Beatae provident nobis mollitia magnam voluptatum, unde dicta facilis minima veniam corporis laudantium alias tenetur eveniet illum reprehenderit fugit a delectus officiis blanditiis ea.
             </p>
           </div>
@@ -820,6 +820,14 @@ ${data.titleHeading}
           
       <span>
       ${data.contact.phoneNumber}
+        </span>
+        `
+        ;
+        const abtcontent = document.querySelector('.abtcontent');
+      abtcontent.innerHTML = `
+          
+      <span>
+      ${data.aboutUs}
         </span>
         `
         ;
